@@ -7,9 +7,6 @@ namespace OCA\AutomaticFilePurge\AppInfo;
 use \OCP\AppFramework\App;
 use \OCP\IContainer;
 
-use \OCA\AutomaticFilePurge\Controller\PageController;
-
-
 class Application extends App {
 
 
@@ -17,26 +14,6 @@ class Application extends App {
 		parent::__construct('automaticfilepurge', $urlParams);
 
 		$container = $this->getContainer();
-
-		/**
-		 * Controllers
-		 */
-		$container->registerService('PageController', function(IContainer $c) {
-			return new PageController(
-				$c->query('AppName'), 
-				$c->query('Request'),
-				$c->query('UserId')
-			);
-		});
-
-
-		/**
-		 * Core
-		 */
-		$container->registerService('UserId', function(IContainer $c) {
-			return \OCP\User::getUser();
-		});		
-		
 	}
 
 
