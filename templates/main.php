@@ -1,6 +1,6 @@
 <?php
-\OCP\Util::addScript('{{ app.id }}', 'script');
-\OCP\Util::addStyle('{{ app.id }}', 'style');
+\OCP\Util::addScript('automaticfilepurge', 'script');
+\OCP\Util::addStyle('automaticfilepurge', 'style');
 ?>
 
 <div id="app">

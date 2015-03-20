@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <info>
-    <id>{{ app.id }}</id>
-    <name>{{ app.name }}</name>
-    <description>{{ app.description }}</description>
-    <licence>{{ app.license | upper }}</licence>
-    <author>{% for author in app.authors %}{{ author.name }}{% if not loop.last %},{% endif %}{% endfor %}</author>
-    <version>{{ app.version }}</version>
-    <requiremin>{{ app.owncloud_version }}</requiremin>
-    <category>{{ app.category }}</category>
+    <id>automaticfilepurge</id>
+    <name>Automatic File Purge</name>
+    <description>Automatic file purge starts a countdown on file creation to allow for a temporary-use server</description>
+    <licence>CC0</licence>
+    <author>Jeremy Echols</author>
+    <version>1.0.0</version>
+    <requiremin>7.0.4.2</requiremin>
+    <category>other</category>
 </info>

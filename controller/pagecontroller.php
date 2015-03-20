@@ -1,7 +1,7 @@
 <?php
-{% include app.small_license_header %}
+// The Automatic File Purge is in the public domain under a CC0 license.
 
-namespace OCA\{{ app.namespace }}\Controller;
+namespace OCA\AutomaticFilePurge\Controller;
 
 
 use \OCP\IRequest;
@@ -30,7 +30,7 @@ class PageController extends Controller {
      */
     public function index() {
         $params = array('user' => $this->userId);
-        return new TemplateResponse('{{ app.id }}', 'main', $params);  // templates/main.php
+        return new TemplateResponse('automaticfilepurge', 'main', $params);  // templates/main.php
     }
 
 

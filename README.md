@@ -1,4 +1,4 @@
-# {{ app.name }}
+# Automatic File Purge
 Place this app in **owncloud/apps/**
 
 

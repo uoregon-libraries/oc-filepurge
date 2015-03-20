@@ -1,2 +1,2 @@
-owncloud-{{ app.id }} ({{ app.version }})
+owncloud-automaticfilepurge (1.0.0)
 * First release

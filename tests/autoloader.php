@@ -1,5 +1,5 @@
 <?php
-{% include app.small_license_header %}
+// The Automatic File Purge is in the public domain under a CC0 license.
 
 require_once __DIR__ . '/../../../3rdparty/Pimple/Pimple.php';
 

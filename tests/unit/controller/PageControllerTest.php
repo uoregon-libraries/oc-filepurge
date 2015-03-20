@@ -1,14 +1,14 @@
 <?php
-{% include app.small_license_header %}
+// The Automatic File Purge is in the public domain under a CC0 license.
 
-namespace OCA\{{ app.namespace }}\Controller;
+namespace OCA\AutomaticFilePurge\Controller;
 
 
 use \OCP\IRequest;
 use \OCP\AppFramework\Http\TemplateResponse;
 use \OCP\AppFramework\Http\JSONResponse;
 
-use \OCA\{{ app.namespace }}\AppInfo\Application;
+use \OCA\AutomaticFilePurge\AppInfo\Application;
 
 
 class PageControllerTest extends \PHPUnit_Framework_TestCase {

@@ -1,7 +1,7 @@
 <?php
-{% include app.small_license_header %}
+// The Automatic File Purge is in the public domain under a CC0 license.
 
-namespace OCA\{{ app.namespace }}\AppInfo;
+namespace OCA\AutomaticFilePurge\AppInfo;
 
 /**
  * Create your routes in here. The name is the lowercase name of the controller

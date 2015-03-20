@@ -1,20 +1,20 @@
 <?php
-{% include app.small_license_header %}
+// The Automatic File Purge is in the public domain under a CC0 license.
 
-namespace OCA\{{ app.namespace }}\AppInfo;
+namespace OCA\AutomaticFilePurge\AppInfo;
 
 
 use \OCP\AppFramework\App;
 use \OCP\IContainer;
 
-use \OCA\{{ app.namespace }}\Controller\PageController;
+use \OCA\AutomaticFilePurge\Controller\PageController;
 
 
 class Application extends App {
 
 
 	public function __construct (array $urlParams=array()) {
-		parent::__construct('{{ app.id }}', $urlParams);
+		parent::__construct('automaticfilepurge', $urlParams);
 
 		$container = $this->getContainer();
 
