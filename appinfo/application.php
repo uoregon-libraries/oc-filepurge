@@ -7,8 +7,8 @@ use \OCP\AppFramework\App;
 use \OCP\IContainer;
 
 class Application extends App {
-	public function __construct (array $urlParams=array()) {
-		parent::__construct('automaticfilepurge', $urlParams);
-		$container = $this->getContainer();
-	}
+  public function __construct (array $urlParams=array()) {
+    parent::__construct('automaticfilepurge', $urlParams);
+    $container = $this->getContainer();
+  }
 }
