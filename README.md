@@ -1,4 +1,4 @@
-# Automatic File Purge
+# File Purge
 Place this app in **owncloud/apps/**
 
 

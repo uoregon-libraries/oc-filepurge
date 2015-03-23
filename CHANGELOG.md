@@ -1,2 +1,2 @@
-owncloud-automaticfilepurge (1.0.0)
+owncloud-filepurge (1.0.0)
 * First release
