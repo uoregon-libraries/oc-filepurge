@@ -38,8 +38,6 @@ class Purge extends Command {
   }
 
   protected function scanFiles() {
-    $scanner = new \OC\Files\Utils\Scanner($this->userid);
-    $this->addListeners($scanner);
     $homePath = $this->user->getHome() . "/files";
     $dataview = new \OC\Files\View("/");
     $userDirectories = $dataview->getDirectoryContent("/", "httpd/unix-directory");
@@ -47,24 +45,6 @@ class Purge extends Command {
     $this->output->writeln(print_r($dataview->file_exists($homePath . "/foo.txt"), true));
     $this->output->writeln("Beginning scan for <info>{$this->user->getDisplayName()}</info>: $homePath...");
     //$this->output->writeln(print_r($userDirectories, true));
-    $scanner->scan($userDirectories);
-  }
-
-  protected function addListeners($scanner) {
-    $scanner->listen("\OC\Files\Utils\Scanner", "scanFile", function ($path) {
-      $this->scanFile($path);
-    });
-    $scanner->listen("\OC\Files\Utils\Scanner", "scanFolder", function ($path) {
-      $this->scanFolder($path);
-    });
-  }
-
-  protected function scanFile($path) {
-    $this->output->writeln("Scanning file <info>$path</info>");
-  }
-
-  protected function scanFolder($path) {
-    $this->output->writeln("Scanning folder <info>$path</info>");
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) {
