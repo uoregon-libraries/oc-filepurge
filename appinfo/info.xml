@@ -7,7 +7,8 @@
       days after last modification.  This is intended to be used in a cron job
       on a "share-only" user.  Real users are given access to the share user's
       folders and can upload re-shareable documents without woryring about
-      storage concerns.
+      storage concerns.  As an added precaution, files will only be deleted if
+      they reside within a folder called "auto-purge" at the users's root.
     </description>
     <licence>CC0</licence>
     <author>Jeremy Echols</author>

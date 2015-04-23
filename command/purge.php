@@ -38,19 +38,36 @@ class Purge extends Command {
   }
 
   protected function scanFiles() {
-    $homePath = $this->user->getHome() . "/files";
-    $dataview = new \OC\Files\View("/");
-    $userDirectories = $dataview->getDirectoryContent("/", "httpd/unix-directory");
+    // This is terribly hard-coded - there must be a "right way" to get at this
+    // directory, but I'm done wrestling with it
+    $purgePath = "/" . $this->user->getUID() . "/files/auto-purge";
+    $this->output->writeln("Beginning scan for files in <info>$purgePath</info> older than <info>{$this->secondsOld}</info> seconds...");
 
-    $this->output->writeln(print_r($dataview->file_exists($homePath . "/foo.txt"), true));
-    $this->output->writeln("Beginning scan for <info>{$this->user->getDisplayName()}</info>: $homePath...");
-    //$this->output->writeln(print_r($userDirectories, true));
+    $dataview = new \OC\Files\View($purgePath);
+    $this->purgeAll($dataview);
+  }
+
+  protected function purgeAll(\OC\Files\View $dataview) {
+    $files = $dataview->getDirectoryContent("/");
+    foreach ($files as $file) {
+      $fname = $file->getInternalPath();
+      $modSeconds = time() - $file->getMTime();
+      $this->output->write("$fname: Last modified $modSeconds seconds ago: ");
+      if ($modSeconds > $this->secondsOld) {
+        $this->output->writeln("\033[31mDeleting file\033[0m");
+        $st = $file->getStorage();
+        $st->unlink($fname);
+      }
+      else {
+        $this->output->writeln("Skipping file");
+      }
+    }
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) {
     $this->output = $output;
     $userid = $input->getArgument("username");
-    $this->daysOld = $input->getArgument("days_old");
+    $this->secondsOld = $input->getArgument("days_old") * 86400;
 
     if (!$this->userManager->userExists($userid)) {
       $output->writeln("<error>Unknown user $this->userid</error>");
