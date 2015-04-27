@@ -44,19 +44,19 @@ class Purge extends Command {
     $this->output->writeln("Beginning scan for files in <info>$purgePath</info> older than <info>{$this->secondsOld}</info> seconds...");
 
     $dataview = new \OC\Files\View($purgePath);
-    $this->purgeAll($dataview);
+    $manager = \OC\Files\Filesystem::getMountManager();
+    $root = new \OC\Files\Node\Root($manager, $dataview, $this->user);
+    $this->purgeAll($root);
   }
 
-  protected function purgeAll(\OC\Files\View $dataview) {
-    $files = $dataview->getDirectoryContent("/");
-    foreach ($files as $file) {
-      $fname = $file->getInternalPath();
+  protected function purgeAll(\OC\Files\Node\Root $root) {
+    foreach ($root->getDirectoryListing() as $file) {
+      $fname = $file->getName();
       $modSeconds = time() - $file->getMTime();
       $this->output->write("$fname: Last modified $modSeconds seconds ago: ");
       if ($modSeconds > $this->secondsOld) {
         $this->output->writeln("\033[31mDeleting file\033[0m");
-        $st = $file->getStorage();
-        $st->unlink($fname);
+        $file->delete();
       }
       else {
         $this->output->writeln("Skipping file");
