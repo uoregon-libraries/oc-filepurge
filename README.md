@@ -19,6 +19,16 @@ dependencies for OwnCloud, resulting in a nearly ready server.
 It's probably a good idea to install MySQL as well, but the built-in support
 for SQLite may be sufficient for smaller installations.
 
+## Apache config
+
+Post-install, you have to hit the app and set up an admin account.  This is
+tricky if you have installed on a headless system, as the default Apache config
+seems to lock the app down to localhost only.  You may have to hack up the
+Apache config *before* you can create the admin account.
+
+It's a good idea to set up SSL as well, otherwise all files, passwords, etc.
+could be intercepted by somebody listening in on web traffic.
+
 ## Plugin installation and setup
 
 Note: All `command line examples` have been tested on a RHEL7 system.
@@ -59,6 +69,8 @@ folders)
 
 ## Gotchas
 
+### Expiration on nested sub-folders
+
 Expiration is determined based on modification date.  This is somehow *not* the
 same as what's displayed in the web UI in at least one situation: touching
 `auto-purge/A/B/file.txt` will properly change `file.txt`'s mod date as well as
@@ -66,3 +78,12 @@ its directory, `B`.  But it will **not** affect `A`'s modification date.  If a
 user needs to create a similar structure, they need to know that they have to
 touch something in `A` in order to reset its countdown (say they add a pile of
 files to `B` a day after creating it).
+
+### The apps page is slow
+
+The app page pulls extra stuff from the "app store", an external service.  If
+you don't want the potentially 10-second delay on the apps page, disable the
+app store by adding this line to the owncloud config
+(`/usr/share/owncloud/config/config.php`):
+
+    'appstoreenabled' => false,
