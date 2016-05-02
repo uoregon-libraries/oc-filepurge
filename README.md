@@ -12,8 +12,8 @@ find and destroy random files:
 
 ## Requirements
 
-The only hard requirement is OwnCloud 7 (haven't tested on 8).  For CentOS 7,
-this can be gotten via `yum install owncloud`.  Yum will handle the
+The only hard requirement is OwnCloud 7 or 8 (haven't tested on 9).  For CentOS
+7, this can be gotten via `yum install owncloud`.  Yum will handle the
 dependencies for OwnCloud, resulting in a nearly ready server.
 
 It's probably a good idea to install MySQL as well, but the built-in support
@@ -54,7 +54,7 @@ The cron job can be inline or a bash script such as this:
 
 ```bash
 cd /usr/share/owncloud
-php occ files:purge username 14
+sudo -u apache php occ files:purge username 14
 ```
 
 Just replace "username" with the user owning the auto-purge folder, and replace
