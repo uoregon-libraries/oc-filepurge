@@ -1,5 +1,7 @@
 # File Purge
 
+***NOTE***: This project is no longer maintained.  Use at your own peril!
+
 Adds the capability to purge files that haven't been touched for a while via a
 special purge command run on the command line.
 
